@@ -1,0 +1,40 @@
+﻿@model DeleteYourTweets.Models.Options
+@{
+    ViewBag.Title = "Index";
+}
+@if (!TwitterHelper.IsLogged)
+{
+    <h2 style="text-align:center;">Merhaba, Öncelikle Twitter'a giriş yapman gerekiyor</h2>
+    <div class="jumbotron">
+        <a href="@Url.Action("Begin","OAuth")" class="btn btn-block btn-lg btn-social btn-twitter">
+            <span class="fa fa-twitter"></span> Sign in with Twitter
+        </a>
+    </div>
+}
+else
+{
+    <h2 style="text-align:center">Merhaba, @ViewBag.Name</h2>
+    <h3 style="text-align:center">Aşağıdaki silmek istediklerini seçerek temizleyebilirsin.</h3>
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <h2 style="text-align:center">@Html.ValidationSummary(true)</h2>
+        <div style="text-align:center">
+            @Html.CheckBoxFor(model => model.Tweets)
+            @Html.LabelFor(model => model.Tweets, new { @class = "control-label" })
+            <br />
+            @Html.CheckBoxFor(model => model.Favourites)
+            @Html.LabelFor(model => model.Favourites, new { @class = "control-label" })
+            <br />
+            @Html.CheckBoxFor(model => model.Messages)
+            @Html.LabelFor(model => model.Messages, new { @class = "control-label" })
+            <br />
+            @Html.CheckBoxFor(model => model.Followings)
+            @Html.LabelFor(model => model.Followings, new { @class = "control-label" })
+        </div>
+        <button type="submit" class="btn btn-block btn-lg btn-social btn">
+            İşlemi Başlat
+        </button>
+    }
+}
