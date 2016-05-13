@@ -10,3 +10,7 @@ Delete all history of twitter account
 4-Copy Consumer (API) Key and Consumer (API) Secret
 5-Paste keys to Web.config
 6-Running
+
+#Libs
+
+I used LinqToTwitter Lib for Twitter API Processes https://github.com/JoeMayo/LinqToTwitter
